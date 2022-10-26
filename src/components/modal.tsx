@@ -38,7 +38,7 @@ export default function InvoiceReader({
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-md sm:p-6">
+              <Dialog.Panel className="relative w-full transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:max-w-md sm:p-6">
                 <div>
                   <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
                     <CameraIcon
@@ -55,7 +55,7 @@ export default function InvoiceReader({
                     </Dialog.Title>
                     <div className="mt-2">
                       <QrReader
-                        className="mx-auto h-96 w-96"
+                        className="mx-auto"
                         onResult={(result, err) => {
                           if (result) {
                             setInvoice(result.getText());
@@ -63,10 +63,13 @@ export default function InvoiceReader({
                             setOpen(false);
                           }
                         }}
-                        constraints={{ sampleRate: 10 }}
+                        constraints={{
+                          sampleRate: 10,
+                          facingMode: "environment",
+                        }}
                         ViewFinder={() => (
                           <div className="absolute top-0 left-0 h-full w-full">
-                            <div className="relative left-1/2 top-1/2 z-10 h-2/3 w-2/3 -translate-x-1/2 -translate-y-1/2 rounded-lg border-2 border-dashed border-gray-400/50" />
+                            <div className="relative left-1/2 top-1/2 z-10 h-2/3 w-2/3 -translate-x-1/2 -translate-y-1/2 rounded-lg border-4 border-dashed border-gray-400/60" />
                           </div>
                         )}
                       />
